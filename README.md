@@ -6,6 +6,10 @@
 
 Vous les trouverez dans le dossier `data/` du dépôt.
 
+### Ressources
+- Vous pouvez utiliser les ressources su votre machine. je vous conseille formtement de charger https://github.com/WebDevCF2m2026/PDO-2026/ Pour PHP/SQL
+- Les autres matières doivent également être chargées.
+
 ## Marche à suivre
 
 - Créez un fork du dépôt TI2-2026 sur github.com puis clonez-le sur votre machine
