@@ -21,7 +21,19 @@ require_once URL_BASE . "/model/guestbookModel.php";
  * Activez le mode d'erreur de PDO à Exception et
  * le mode fetch à tableau associatif
  */
-
+try{
+    $connectDB = new PDO(
+        dsn:MARIA_DSN, 
+        username:DB_CONNECT_USER, 
+        password:DB_CONNECT_PWD,
+        // tableau de paramètres de connexion, ici pour recevoir les
+        // résultats des query en tableau associatif
+        // ! seul endroit où on peut créer une connexion permanante
+        options:[
+        // connexion permanante seulement ici, pas avec setAttribute()
+        // PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
 /*
  * Si le formulaire a été soumis
  */
