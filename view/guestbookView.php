@@ -97,17 +97,20 @@
                 $nbMessage = count($messages);
 
                 // pas de message
-                if(empty($nbMessage)):
+                if(0 == $nbMessage):
                 ?>
                <h2>Il n'y a pas encore de message</h2>
                 <?php
                 // il y a au moins un message
-                else:
-                    // préparation du pluriel si on a plus d'un message
-                    $pluriel = $nbMessage > 1 ? "s" :"";
+                elseif(1 == $nbMessage):
                 ?>
-            
-                <h2>Message<?= $pluriel ?> récent<?= $pluriel ?> (<?= $nbMessage ?>)</h2>
+                    // préparation du pluriel si on a plus d'un message
+               <h2>Il y a 1 message</h2>
+                
+               <?php
+                else:
+                ?>
+                <h2>Messages récents - il y a actuellement (<?= $nbMessage ?>) messages</h2>
                 <?php
                     foreach($messages as $message):
                 ?>
