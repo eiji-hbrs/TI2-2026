@@ -55,7 +55,7 @@ try{
     // on appelle la fonction d'insertion dans la DB (addGuestbook())
     $offset = ($page-1)*PAGINATION_NB;
     # chargement des commentaires de la page actuelle
-    $commentaires = getAllGuestbook($connectDB, $offset, PAGINATION_NB);
+    $commentaires = getAllGuestbook($connectDB);
 
 if ($section === 'ajouter') {
 
@@ -76,7 +76,7 @@ if ($section === 'ajouter') {
     }
 
     // on redirige vers la page actuelle (ou on affiche un message de succès)
-    include URL_BASE."/view/./";
+    print ("Votre message a bien été reçu !");
     // sinon, on affiche un message d'erreur
 } else {
     print ("Une erreur est survenue");

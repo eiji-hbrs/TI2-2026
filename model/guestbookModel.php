@@ -30,15 +30,38 @@ function addGuestbook(PDO $db,
 ): bool
 {
     // traitement des données backend (SECURITE)
-
+    $usermail=filter_var($usermail,FILTER_VALIDATE_EMAIL);
+    $message=htmlspecialchars(trim(strip_tags($message)));
+    $firstname = htmlspecialchars(trim(strip_tags($firstname)));
+    $lastname = htmlspecialchars(trim(strip_tags($lastname)));
+    $phone = htmlspecialchars(trim(strip_tags($phone)));
+    $postcode = htmlspecialchars(trim(strip_tags($postcode)));
+    $message = htmlspecialchars(trim(strip_tags($message)));
+    
+    // on envoie false si il y a une seule erreur
+      if($usermail===false        ||
+    strlen($usermail)>=200        ||
+    strlen($firstname)>=100       ||
+    empty($firstname)             ||
+    strlen($lastname)>=100        ||
+    empty($lastname)              ||
+    strlen($phone)>=20            ||
+    empty($phone)                 ||
+    strlen($postcode)==5          ||
+    empty($postcode)              ||
+    strlen($message)>=500        
     // si pas de données complètes ou ne correspondant pas à nos attentes, on renvoie false
-    return false;
+      )return false;
     // requête préparée obligatoire !
-
+    $stmt = $db->prepare("INSERT INTO `message` (`firstname`, `lastname`, `usermail`, `phone`, `postcode`) VALUES (?,?,?,?,?);");
     // si l'insertion a réussi
     // on renvoie true
     // sinon, on renvoie false
-
+    $insert = $stmt->execute([$usermail,$firstname,$lastname,$phone,$postcode,$message]);
+    // bonne pratique
+    $stmt->closeCursor();
+    // return envoi true si réussi, false en cas d'échec
+    return $insert;
 }
 
 /***************************
@@ -59,7 +82,8 @@ function getAllGuestbook(PDO $db): array
     // si la requête a réussi,
     // bonne pratique, fermez le curseur
     // renvoyer le tableau de(s) message(s)
-    return [];
+    // requête prépare
+  
 }
 
 /**************************
