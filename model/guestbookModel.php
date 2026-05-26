@@ -55,7 +55,7 @@ function addGuestbook(PDO $db,
     // requête préparée obligatoire !
    $prepare = $db->prepare("
     INSERT INTO `guestbook`(`firstname`,`lastname`,`usermail`,`postcode`,`phone`,`message`)
-    VALUES(:email,:text_comment,:full_name,:title); 
+    VALUES(:firstname,:lastname,:usermail,:postcode,:phone,:message); 
     ");
     # on met nos val dans 
     $prepare->bindValue(':firstname',$firstname);

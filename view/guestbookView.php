@@ -30,6 +30,7 @@
     <img class="book" src="./img/book.png" alt="armoiries">
 
     <h2>Votre message</h2>
+    <form method="POST">
     <div>
         <label for="nom">Nom</label>
         <input type="text" name="nom" id="nom" placeholder="Ex: Smith">
@@ -61,8 +62,8 @@
             <p>J'accepte le stockage de mes données personelles.</p>
         </div>
                 
-        <button class="submit-btn" id="signupBtn">Envoyer le message</button>
-
+        <button type="submit" class="submit-btn" id="signupBtn">Envoyer le message</button>
+    </form>
     <?php
     // on a tenté d'envoyé le formulaire et
     // il a passé les protections frontend
