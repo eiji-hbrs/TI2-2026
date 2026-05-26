@@ -42,7 +42,7 @@
         </div>
         <div>
             <label for="codePostal">Code Postal</label>
-            <input type="text" name="codePostal" id="codePostal" placeholder="EX: 0102030405">
+            <input type="text" name="codePostal" id="codePostal" placeholder="Ex: 1234">
         </div>
         <div>
             <label for="tel">Téléphone</label>
@@ -57,6 +57,9 @@
             <input type="checkbox" name="condition" id="condition">
             <p>J'accepte le stockage de mes données personelles.</p>
         </div>
+                
+        <button class="submit-btn" id="signupBtn">Envoyer le message</button>
+
     <?php
     // on a tenté d'envoyé le formulaire et
     // il a passé les protections frontend
@@ -84,17 +87,40 @@
         endif;
     endif;
     ?>
-    <!-- Si pas de message -->
-    <h3>Pas encore de message</h3>
-    <!-- Si 1 message -->
-    <h3>Il y a 1 message</h3>
-    <!-- Si plusieurs messages -->
-    <h3>Il y a X messages</h3>
+    <section class="messages-section">
+                <?php
+                // on compte le nombre de message
+                $nbMessage = count($messages);
 
+                // pas de message
+                if(empty($nbMessage)):
+                ?>
+               <h2>Il n'y a pas encore de message</h2>
+                <?php
+                // il y a au moins un message
+                else:
+                    // préparation du pluriel si on a plus d'un message
+                    $pluriel = $nbMessage>1 ? "s" :"";
+                ?>
+            
+                <h2>Message<?= $pluriel ?> récent<?= $pluriel ?> (<?= $nbMessage ?>)</h2>
+                <?php
+                    foreach($messages as $message):
+                ?>
+                <div class="message-card">
+                    <h3>Ecrit par <?= htmlspecialchars($message['email_message']) ?> le <?= htmlspecialchars($message['date_message']) ?></h3>
+                    <p><?= nl2br(htmlspecialchars($message['texte_message'])) ?></p>
+
+                </div>
+                <?php
+                    endforeach;
+                endif;
+                ?>
+            </section>
     <!-- Pagination (BONUS) -->
 
     <!-- Liste des messages -->
-    <section class="messages-section">
+    <!-- <section class="messages-section">
         <?php
         // on compte le nombre de message
         $messages= getAllGuestbook($connectDB);
@@ -124,7 +150,7 @@
                 <?php
             endforeach;
         endif;
-        ?>
+        ?> -->
     </section>
     <!-- Pagination (BONUS) -->
     <?php
