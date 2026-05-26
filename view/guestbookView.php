@@ -19,7 +19,10 @@
         <img class="logo" src="./img/logo.png" alt="armoiries">
         <h1>TI2 | Livre d'or</h1>
         <p>Laissez une trace de passage !</p>
-        <img class="settings" src="./img/settings.png" alt="armoiries">
+        <div>
+            <img class="settings" src="./img/settings.png" alt="settings">
+            <span>Administion</span>
+        </div>
 
     </header>
     <!-- Formulaire d'ajout d'un message -->
@@ -100,7 +103,7 @@
                 // il y a au moins un message
                 else:
                     // préparation du pluriel si on a plus d'un message
-                    $pluriel = $nbMessage>1 ? "s" :"";
+                    $pluriel = $nbMessage > 1 ? "s" :"";
                 ?>
             
                 <h2>Message<?= $pluriel ?> récent<?= $pluriel ?> (<?= $nbMessage ?>)</h2>
@@ -120,38 +123,6 @@
     <!-- Pagination (BONUS) -->
 
     <!-- Liste des messages -->
-    <!-- <section class="messages-section">
-        <?php
-        // on compte le nombre de message
-        $messages= getAllGuestbook($connectDB);
-        $nbMessage = count($messages);
-
-        // pas de message
-        if (empty($nbMessage)):
-            ?>
-            <h2>Il n'y a pas encore de message</h2>
-            <?php
-            // il y a au moins un message
-        else:
-            // préparation du pluriel si on a plus d'un message
-            $pluriel = $nbMessage > 1 ? "s" : "";
-            ?>
-
-            <h2>Message<?= $pluriel ?> récent<?= $pluriel ?> (<?= $nbMessage ?>)</h2>
-            <?php
-            foreach ($messages as $message):
-                ?>
-                <div class="message-card">
-                    <h3>Ecrit par <?= htmlspecialchars($message['email_message']) ?> le
-                        <?= htmlspecialchars($message['date_message']) ?></h3>
-                    <p><?= nl2br(htmlspecialchars($message['texte_message'])) ?></p>
-
-                </div>
-                <?php
-            endforeach;
-        endif;
-        ?> -->
-    </section>
     <!-- Pagination (BONUS) -->
     <?php
     // À commenter quand on a fini de tester
