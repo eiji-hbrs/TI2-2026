@@ -21,10 +21,10 @@ require_once URL_BASE . "/model/guestbookModel.php";
  * Activez le mode d'erreur de PDO à Exception et
  * le mode fetch à tableau associatif
  */
-try{
+try {
     $connectDB = new PDO(
         dsn: MARIA_DSN,
-        username: DB_HOST,
+        username: DB_LOGIN,
         password: DB_PWD,
         // tableau de paramètres de connexion, ici pour recevoir les
         // résultats des query en tableau associatif
@@ -35,45 +35,48 @@ try{
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]
     );
-        $connectDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $connectDB->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        }catch(Exception $e){
-        // arrêt et affichage de l'erreur (en dev)
-        die($e->getMessage());
-    }
+} catch (Exception $e) {
+    // arrêt et affichage de l'erreur (en dev)
+    die($e->getMessage());
+}
 
-    /*
-     * Si le formulaire a été soumis
-     */
-    # chargement des commentaires
-    $commentaires = getAllGuestbook($connectDB);
-    # on compte les commentaires
-    $nbCommentaires = count($commentaires);
+/*
+ * Si le formulaire a été soumis
+ */
+if (isset($_POST['firstname'], $_POST['lastname'], $_POST['usermail'], $_POST['phone'], $_POST['postcode'], $_POST['message'])) {
+    // tentative d'insertion (protections dans la fonction)
+    $insert = addGuestbook(
+        db: $connectDB,
+        firstname: $_POST['firstname'],
+        lastname: $_POST['lastname'],
+        usermail: $_POST['usermail'],
+        phone: $_POST['phone'],
+        postcode: $_POST['postcode'],
+        message: $_POST['message'],
+    );
     # Vue commentaires
-    include URL_BASE."/view/guestbookView.php";
+    include URL_BASE . "/view/guestbookView.php";
 
     // on appelle la fonction d'insertion dans la DB (addGuestbook())
-    $offset = ($page-1)*PAGINATION_NB;
-    # chargement des commentaires de la page actuelle
-    $commentaires = getAllGuestbook($connectDB);
 
-if ($section === 'ajouter') {
+    # chargement des commentaires de la page actuelle
 
     # formulaire envoyé au backend
-    if (isset($_POST['firstname'], $_POST['lastname'], $_POST['usermail'], $_POST['phone'], $_POST['postcode'], $_POST['message'])) {
-        // tentative d'insertion (protections dans la fonction)
-        $insert = addGuestbook(
-            db: $connectDB,
-            firstname: $_POST['firstname'],            
-            lastname: $_POST['lastname'],
-            usermail: $_POST['usermail'],
-            phone: $_POST['phone'],
-            postcode: $_POST['postcode'],
-            message: $_POST['message'],
-        );
-        // si l'insertion a réussi
-        header("Location: ./?section=commentaires");
+
+    // si l'insertion a réussi
+    if (isset($_POST['email_message'], $_POST['texte_message'])) {
+        // envoi de nos variables nécessaires à l'insertion
+        $insert = insertMessage($connectDB, $_POST['email_message'], $_POST['texte_message']);
     }
+
+    // récupération de tous les messages
+    $messages = selectAllMessage($connectDB);
+
+
+    // bonne pratique, fermeture de connexion
+    $connectDB = null;
 
     // on redirige vers la page actuelle (ou on affiche un message de succès)
     print ("Votre message a bien été reçu !");
@@ -86,13 +89,13 @@ if ($section === 'ajouter') {
  * On récupère les messages du livre d'or
  */
 # chargement des commentaires
-    $commentaires = getAllGuestbook($connectDB);
-    # on compte les commentaires
-    $nbCommentaires = count($commentaires);
-    # Vue commentaires
-    include URL_BASE."/view/guestbookView.php";
+$commentaires = getAllGuestbook($connectDB);
+# on compte les commentaires
+$nbCommentaires = count($commentaires);
+# Vue commentaires
+
 // on appelle la fonction de récupération de la DB (getAllGuestbook())
-    $recup = getAllGuestbook($connectDB);
+$recup = getAllGuestbook($connectDB);
 
 /*********************
  * Ou Bonus Pagination

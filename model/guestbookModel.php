@@ -53,15 +53,21 @@ function addGuestbook(PDO $db,
     // si pas de données complètes ou ne correspondant pas à nos attentes, on renvoie false
       )return false;
     // requête préparée obligatoire !
-    $stmt = $db->prepare("INSERT INTO `message` (`firstname`, `lastname`, `usermail`, `phone`, `postcode`) VALUES (?,?,?,?,?);");
-    // si l'insertion a réussi
-    // on renvoie true
-    // sinon, on renvoie false
-    $insert = $stmt->execute([$usermail,$firstname,$lastname,$phone,$postcode,$message]);
-    // bonne pratique
-    $stmt->closeCursor();
-    // return envoi true si réussi, false en cas d'échec
-    return $insert;
+   $prepare = $db->prepare("
+    INSERT INTO `guestbook`(`firstname`,`lastname`,`usermail`,`postcode`,`phone`,`message`)
+    VALUES(:email,:text_comment,:full_name,:title); 
+    ");
+    # on met nos val dans 
+    $prepare->bindValue(':firstname',$firstname);
+    $prepare->bindValue(':lastname',$lastname);
+    $prepare->bindValue(':usermail',$usermail);
+    $prepare->bindValue(':postcode',$postcode);
+    $prepare->bindValue(':phone',$phone);
+    $prepare->bindValue(':message',$message);
+
+    # on exécute la requete
+   $retour=$prepare->execute();
+   return $retour; // true en cas de réussite, false en cas d'échec
 }
 
 /***************************
@@ -83,7 +89,14 @@ function getAllGuestbook(PDO $db): array
     // bonne pratique, fermez le curseur
     // renvoyer le tableau de(s) message(s)
     // requête prépare
-  
+
+    // la requête
+    $stmt = $db->query("SELECT * FROM `guestbook` ORDER BY `datemessage` DESC");
+    // récupération des résultat en fetch_assoc (voir connexion)
+    $result = $stmt->fetchAll();
+    $stmt->closeCursor();
+    // retour
+    return $result; 
 }
 
 /**************************
@@ -103,10 +116,6 @@ function getNbTotalGuestbook(PDO $db): int
     // renvoyez le nombre total de messages
     // $stmt = $db->query("SELECT COUNT(*) AS nb FROM `commentaire`");
     // $nb = (int) $stmt->fetch()['nb'];
-    $stmt = $db->query("SELECT COUNT(*) FROM `commentaire`");
-    $nb = (int) $stmt->fetchColumn();
-    $stmt->closeCursor();
-    return $nb;
 
 }
 // SELECTION de messages dans le livre d'or par ordre de date croissante
