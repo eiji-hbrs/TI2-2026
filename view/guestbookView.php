@@ -15,9 +15,48 @@
 </head>
 
 <body>
-    <h1>TI2 | Livre d'or</h1>
+    <header>
+        <img class="logo" src="./img/logo.png" alt="armoiries">
+        <h1>TI2 | Livre d'or</h1>
+        <p>Laissez une trace de passage !</p>
+        <img class="settings" src="./img/settings.png" alt="armoiries">
+
+    </header>
     <!-- Formulaire d'ajout d'un message -->
-    <h2>Ici le formulaire</h2>
+
+    <img class="book" src="./img/book.png" alt="armoiries">
+
+    <h2>Votre message</h2>
+    <div>
+        <label for="nom">Nom</label>
+        <input type="text" name="nom" id="nom" placeholder="Ex: Smith">
+    </div>
+    <div class="email-tel">
+        <div>
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" id="prenom" placeholder="Ex: John">
+        </div>
+        <div>
+            <label for="email">E-mail</label>
+            <input type="text" name="email" id="email" placeholder="johnsmith@example.com">
+        </div>
+        <div>
+            <label for="codePostal">Code Postal</label>
+            <input type="text" name="codePostal" id="codePostal" placeholder="EX: 0102030405">
+        </div>
+        <div>
+            <label for="tel">Téléphone</label>
+            <input type="text" name="telephone" id="tel" placeholder="Ex: 0102030405">
+        </div>
+        <div>
+            <label for="commentaire">Message</label>
+            <input type="text" name="commentaire" id="commentaire" placeholder="Un petit mot...">
+        </div>
+        <div>
+            <label for="condition"></label>
+            <input type="checkbox" name="condition" id="condition">
+            <p>J'accepte le stockage de mes données personelles.</p>
+        </div>
     <?php
     // on a tenté d'envoyé le formulaire et
     // il a passé les protections frontend
