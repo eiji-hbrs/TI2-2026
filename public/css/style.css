@@ -1,30 +1,117 @@
+
 .formulaire{
     border: 2px solid black;
-    background-color: aqua;
     padding: 15px;
-    display:block;
+    margin: 20px 0 20px 0;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+
+    display:grid;
+    font-family: marcellus;
+    width: auto;
+
 }
 
-.logo{
+#admin{
+    display: none;
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 15px 0 15px 0;
+    padding: 15px;
 
 }
 
 .settings{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: auto 0;
+    padding: 10px;
+}
+
+.logo{
+    width: 100px;
+    height: 100px;
+    margin: 0 ;  
+}
+
+.settings{
+    width: 50px;
+    height: 50px; 
+    padding-top: 10px;
+    align-items: center;
+    
+}
+
+.submit-btn{
+    border: 1px solid black;
+    border-radius: 10px;   
+    padding: 10px;
+    width: 80%;
+    height: 30px; 
+}
+
+.livre{
+    display: flex;
+    justify-content: center;
+}
+
+.message-card{
+    border: 2px solid black;
+    margin: 15px 0 15px 0;
+    border-radius: 10px;
 
 }
 
-.titre{
+
+label{
+    grid-area: l;
+    width: 80%;
+    height: 20px; 
+    margin: 5px 15px 15px 15px; 
+ 
+}
+
+input{
+    grid-area: i;
+    width: 80%;
+    height: 20px;
+    margin: 5px 10px 10px; 
 
 }
 
-.sousTitre{
+textarea{
+    grid-area: t;
+    width: 80%;
+    height: 20%; 
 
 }
 
-.book{
+@media (min-width: 960px){
+    body{
+        width: 90%;
+        justify-content: center;
+    }
+    .formulaire{
+        display: block;
+    }
+    .form-group{
+        display: flex;
+    }
 
+    .submit-btn{
+        width: 90%;
+        margin: 0 auto;
+
+    }
+    textarea{
+        width: 90%;
+    }
 }
 
-@media (max-width: 480px){
 
-}
