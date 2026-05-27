@@ -68,7 +68,7 @@
                     <div class="textarea-wrapper">
                         <textarea name="message" id="message" rows="5"
                             required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
-                        <span id="charCount" class="char-count">0 / 300 caractères</span>
+                        <span id="charCount" class="char-count">0 / 300 </span>
                     </div>
                 </div>
 
