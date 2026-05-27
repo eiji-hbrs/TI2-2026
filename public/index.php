@@ -56,8 +56,6 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['usermail'], $_POST['p
         postcode: $_POST['postcode'],
         message: $_POST['message'],
     );
-    # Vue commentaires
-    include URL_BASE . "/view/guestbookView.php";
 
     // on appelle la fonction d'insertion dans la DB (addGuestbook())
 
@@ -82,7 +80,7 @@ if (isset(
 )) {
     // on appelle la fonction d'insertion dans la DB (addGuestbook())
     $insert = addGuestbook(
-        db:        $db,
+        db:        $connectDB,
         firstname: $_POST['firstname'],
         lastname:  $_POST['lastname'],
         usermail:  $_POST['usermail'],
@@ -94,8 +92,7 @@ if (isset(
         if ($insert === true) {
         // Succès : on stocke le message en session et on redirige 
         $_SESSION['feedbackMessage'] = ['type' => 'success', 'text' => 'Votre message a bien été enregistré !'];
-        header('Location: index.php');
-        exit();
+
     } else {
         // Échec de validation backend
         $feedbackMessage = ['type' => 'error', 'text' => 'Erreur : vérifiez vos données et réessayez.'];
@@ -107,14 +104,8 @@ $nbMessages = count($messages);
 /*
  * On récupère les messages du livre d'or
  */
-# chargement des commentaires
-$commentaires = getAllGuestbook($connectDB);
-# on compte les commentaires
-$nbCommentaires = count($commentaires);
-# Vue commentaires
 
-// on appelle la fonction de récupération de la DB (getAllGuestbook())
-$recup = getAllGuestbook($connectDB);
+# Vue commentaires
 
 /*********************
  * Ou Bonus Pagination

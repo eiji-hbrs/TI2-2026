@@ -16,9 +16,9 @@
 
 <body>
     <header>
-        <img class="logo" src="./img/logo.png" alt="armoiries">
-        <h1>TI2 | Livre d'or</h1>
-        <p>Laissez une trace de passage !</p>
+        <img class="logo" src="./img/logo.png" alt="logo">
+        <h1  class="titre">TI2 | Livre d'or</h1>
+        <p class="sousTitre">Laissez une trace de passage !</p>
         <div>
             <img class="settings" src="./img/settings.png" alt="settings">
             <span>Administion</span>
@@ -27,42 +27,52 @@
     </header>
     <!-- Formulaire d'ajout d'un message -->
 
-    <img class="book" src="./img/book.png" alt="armoiries">
+    <img class="book" src="./img/book.png" alt="livre">
 
     <h2>Votre message</h2>
-    <form method="POST">
-    <div>
-        <label for="nom">Nom</label>
-        <input type="text" name="nom" id="nom" placeholder="Ex: Smith">
-    </div>
-    <div class="email-tel">
-        <div>
-            <label for="prenom">Prénom</label>
-            <input type="text" name="prenom" id="prenom" placeholder="Ex: John">
-        </div>
-        <div>
-            <label for="email">E-mail</label>
-            <input type="text" name="email" id="email" placeholder="johnsmith@example.com">
-        </div>
-        <div>
-            <label for="codePostal">Code Postal</label>
-            <input type="text" name="codePostal" id="codePostal" placeholder="Ex: 1234">
-        </div>
-        <div>
-            <label for="tel">Téléphone</label>
-            <input type="text" name="telephone" id="tel" placeholder="Ex: 0102030405">
-        </div>
-        <div>
-            <label for="commentaire">Message</label>
-            <input type="text" name="commentaire" id="commentaire" placeholder="Un petit mot...">
-        </div>
-        <div>
-            <label for="condition"></label>
-            <input type="checkbox" name="condition" id="condition">
-            <p>J'accepte le stockage de mes données personelles.</p>
-        </div>
-                
-        <button type="submit" class="submit-btn" id="signupBtn">Envoyer le message</button>
+    <div class="formulaire">
+        <form method="POST" action="">
+        
+            <div class="form-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname"
+                    value="<?= htmlspecialchars($_POST['firstname'] ?? '') ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname"
+                    value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="usermail">E-mail</label>
+                <input type="email" name="usermail" id="usermail"
+                    value="<?= htmlspecialchars($_POST['usermail'] ?? '') ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="postcode">Code Postal</label>
+                <input type="text" name="postcode" id="postcode"
+                    value="<?= htmlspecialchars($_POST['postcode'] ?? '') ?>" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Numero de Téléphone</label>
+                <input type="text" name="phone" id="phone" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <div class="textarea-wrapper">
+                    <textarea name="message" id="message" rows="5"
+                        required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
+                    <span id="charCount" class="char-count">0 / 300 caractères</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="signupBtn">Envoyer le message</button>
     </form>
     <?php
     // on a tenté d'envoyé le formulaire et
@@ -92,38 +102,38 @@
     endif;
     ?>
     <section class="messages-section">
-                <?php
-                // on compte le nombre de message
-                $nbMessage = count($messages);
+        <?php
 
-                // pas de message
-                if(0 == $nbMessage):
-                ?>
-               <h2>Il n'y a pas encore de message</h2>
-                <?php
-                // il y a au moins un message
-                elseif(1 == $nbMessage):
-                ?>
-                    // préparation du pluriel si on a plus d'un message
-               <h2>Il y a 1 message</h2>
-                
-               <?php
-                else:
-                ?>
-                <h2>Messages récents - il y a actuellement (<?= $nbMessage ?>) messages</h2>
-                <?php
-                    foreach($messages as $message):
+        // pas de message
+        if (0 == $nbMessages):
+            ?>
+            <h2>Il n'y a pas encore de message</h2>
+            <?php
+            // il y a au moins un message
+        elseif (1 == $nbMessages):
+            ?>
+            // préparation du pluriel si on a plus d'un message
+            <h2>Il y a 1 message</h2>
+
+            <?php
+        else:
+            ?>
+            <h2>Messages récents - il y a actuellement (<?= $nbMessages ?>) messages</h2>
+            <?php
+            foreach ($messages as $message):
                 ?>
                 <div class="message-card">
-                    <h3>Ecrit par <?= htmlspecialchars($message['email_message']) ?> le <?= htmlspecialchars($message['date_message']) ?></h3>
-                    <p><?= nl2br(htmlspecialchars($message['texte_message'])) ?></p>
+                    <h3>Ecrit par <?= htmlspecialchars($message['firstname']) ?> le
+                        <?= htmlspecialchars($message['datemessage']) ?>
+                    </h3>
+                    <p><?= nl2br(htmlspecialchars($message['message'])) ?></p>
 
                 </div>
                 <?php
-                    endforeach;
-                endif;
-                ?>
-            </section>
+            endforeach;
+        endif;
+        ?>
+    </section>
     <!-- Pagination (BONUS) -->
 
     <!-- Liste des messages -->

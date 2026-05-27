@@ -47,7 +47,7 @@ function addGuestbook(PDO $db,
     empty($lastname)              ||
     strlen($phone)>=20            ||
     empty($phone)                 ||
-    strlen($postcode)==5          ||
+    strlen($postcode)==4          ||
     empty($postcode)              || 
     strlen($message)>=500        
     // si pas de données complètes ou ne correspondant pas à nos attentes, on renvoie false
