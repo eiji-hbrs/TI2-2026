@@ -10,7 +10,7 @@
    L'envoi final est géré par PHP qui affiche un message de retour.
 
    ============================================================================
-   PARTIE 1 — STRUCTURE HTML À PRÉVOIR
+   PARTIE 1 — STRUCTURE HTML À PRÉVOIR x
    ============================================================================
 
    Vous devez créer un formulaire contenant AU MINIMUM les champs suivants :
@@ -87,7 +87,7 @@
    (par exemple, vérifier que les variables $_POST sont bien remplies).
 
    ============================================================================
-   PARTIE 4 — DARK MODE
+   PARTIE 4 — DARK MODE x
    ============================================================================
 
    Créer un bouton qui permet de basculer entre deux thèmes :
@@ -105,7 +105,6 @@
    - Utiliser une classe CSS (ex : .dark-mode) sur le <body>.
    - Faire le toggle de cette classe en jQuery avec .toggleClass().
    - Mettre à jour le texte du bouton après chaque toggle.
-
    ============================================================================
    PARTIE 5 — BONUS
    ============================================================================
@@ -140,4 +139,158 @@
 
    Bon travail !
    ========================================================================= */
+$(document).ready(function () {
+  const REGEX = {
+    // regex pour nom et ^renom
+    username: /^[a-zA-Z]{3,100}$/,
+    // regex pour adresse mail
+    email: /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/,
+    // regex pour code postal
+    postCode: /^[0-9]{4}$/,
+    // regex pour numero gsm
+    gsm: /^(?:\+324|00324|04)\d{8}$/,
+  }});
+ 
+  // verification du firstname en temps réel
+  $("#firstname").on("keyup", function () {
+    // Ton code ici ↓
+    const val = $(this).val();
+    const $field = $("#f-firstname");
+    const $hint = $field.find(".hint");
+ 
+    $field.removeClass("ok error");
+ 
+    if (val === "") {
+      $hint.text("3 à 100 caractères : lettres ");
+      return;
+    }
+ 
+    if (REGEX.username.test(val)) {
+      $field.addClass("ok");
+      $hint.text("prenom valide");
+    } else {
+      $field.addClass("error");
+      $hint.text("✗ 3-100 caractères, uniquement lettres");
+    }
+  });
+  // verification du lastname en yemps réel
+  $("#lastname").on("keyup", function () {
+    // Ton code ici ↓
+    const val = $(this).val();
+    const $field = $("#f-lastname");
+    const $hint = $field.find(".hint");
+ 
+    $field.removeClass("ok error");
+ 
+    if (val === "") {
+      $hint.text("3 à 100 caractères : lettres ");
+      return;
+    }
+ 
+    if (REGEX.username.test(val)) {
+      $field.addClass("ok");
+      $hint.text("prénom valide");
+    } else {
+      $field.addClass("error");
+      $hint.text("✗ 3-100 caractères, uniquement lettres");
+    }
+  });
+ 
+  /* ============================================================
+  VALIDATION TEMPS RÉEL — email
+  ============================================================ */
+ 
+  $("#usermail").on("keyup", function () {
+    // Ton code ici ↓
+    const val = $(this).val();
+    const $field = $("#f-email");
+    const $hint = $field.find(".hint");
+ 
+    $field.removeClass("ok error");
+ 
+    if (val === "") {
+      $hint.text("Format : nom@domaine.ext");
+      return;
+    }
+ 
+    if (REGEX.email.test(val)) {
+      $field.addClass("ok");
+      $hint.text("Email valide");
+    } else {
+      $field.addClass("error");
+      $hint.text("✗ Format invalide (ex : nom@domaine.com)");
+    }
+  });
+ 
+  // validation de code postal
+  $("#postcode").on("keyup", function () {
+    // Ton code ici ↓
+    const val = $(this).val();
+    const $field = $("#f-postcode");
+    const $hint = $field.find(".hint");
+ 
+    $field.removeClass("ok error");
+ 
+    if (val === "") {
+      $hint.text("doit etre composé de 4 chiffre");
+      return;
+    }
+ 
+    if (REGEX.postCode.test(val)) {
+      $field.addClass("ok");
+      $hint.text("code postal valide");
+    } else {
+      $field.addClass("error");
+      $hint.text("✗ Format invalide (ex : 1080)");
+    }
+  });
+ 
+  // validation du numéro de téléphone
+  $("#phone").on("keyup", function () {
+    // Ton code ici ↓
+    const val = $(this).val();
+    const $field = $("#f-phone");
+    const $hint = $field.find(".hint");
+ 
+    $field.removeClass("error");
+ 
+    if (val === "") {
+      $hint.text("doit etre composé de 8 chiffre apres le 4");
+      return;
+    }
+ 
+    if (REGEX.gsm.test(val)) {
+      $field.addClass("ok");
+      $hint.text("gsm valide");
+    } else {
+      $field.addClass("error");
+      $hint.text("✗ Format invalide (ex : 00324** ou +324*** ou 04***)");
+    }
+  });
 
+  // compte le nombre de caractère du message
+  // valide si il y a min 10 charactères
+  $("#message").on("keyup", function () {
+    // Ton code ici ↓
+    const val = $(this).val();
+    $(".char-count").text(val.length + " / 300 caractères");
+ 
+    if (val === "") {
+      $hint.text("doit contenir min 10 caracter");
+      return;
+    }
+ 
+    if (REGEX.gsm.test(val)) {
+      $field.addClass("ok");
+      $hint.text("gsm valide");
+    } else {
+      $field.addClass("error");
+      $hint.text("✗ Format invalide (ex : 00324** ou +324*** ou 04***)");
+    }
+  });
+
+// Dark mode 
+// Dark mode
+$("#dm").click(function(){
+    $("body").toggleClass("dark");
+});

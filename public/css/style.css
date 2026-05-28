@@ -2,7 +2,6 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-
 }
 
 .formulaire {
@@ -38,26 +37,32 @@ header {
 
 }
 
+.dm{
+    width: fit-content;
+    height: 50px;
+    background-color: white;
+}
+
 .settings {
-    border: 2px solid black;
+    background: url("../img/settingLight.png") no-repeat;
+    display: flex;
+    border: 3px solid black;
     border-radius: 10px;
     align-items: center;
     margin: 10px;
     padding: 10px;
-}
-
-.logo {
-    width: 100px;
-    height: 100px;
-    margin: 10px;
-    align-content: center;
-}
-
-.settings {
     width: 50px;
     height: 50px;
     padding-top: 10px;
     align-items: center;
+}
+
+.logo {
+    width: 150px;
+    height: 150px;
+    margin: 10px;
+    align-content: center;
+    background: url("../img/logoLight.png") no-repeat;
 
 }
 
@@ -72,6 +77,7 @@ header {
     width: 95%;
     height: 30px;
     margin: 0 auto;
+    background-color: white;
 }
 
 .livre {
@@ -86,7 +92,6 @@ header {
     margin: 15px 0 15px 0;
     border-radius: 10px;
     padding: 5px;
-
 }
 
 
@@ -95,7 +100,6 @@ label {
     width: 80%;
     height: 20px;
     margin: 5px 15px 15px 15px;
-
 }
 
 input {
@@ -134,10 +138,43 @@ input {
     }
 }
 
-#condition{
+/* Dark mode */
+.dark{
+    
+    background-color: black;
+    color: aliceblue;
+    border: antiquewhite;
 
+    .dm{
+        width: fit-content;
+        height: 50px;
+        background-size: 50px 50px;
+        position: relative;
+        background-color: black;
+        color: aliceblue;
+        border-color: aliceblue;
+    }
+
+    .settings{
+        background: url("../img/settingDark.png") no-repeat;
+        background-color: black;
+        border-color: aliceblue;
+    }
+
+    .message-card, .formulaire, header{
+        border-color: aliceblue;
+    }
+    .logo{
+        background: url("../img/logoDark.png") no-repeat;
+        scale: 1.25;
+        width: 150px;
+        height: 150px;
+        background-color: black;
+        border-color: aliceblue;
+    }
 }
 
+/* responsive */
 @media (min-width: 480px) and (max-width: 960px) {
     body {
         display: flex;
@@ -200,6 +237,4 @@ input {
         ;
         gap: 10px;
     }
-
-
 }

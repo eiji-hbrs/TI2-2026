@@ -9,6 +9,8 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
     <title>TI2 | Livre d'or</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="css/style.css">
@@ -16,10 +18,14 @@
 
 <body>
     <header>
-        <img class="logo" src="./img/logo.png" alt="logo">
+        <div class="logo"></div>
         <h1 class="titre">TI2 | Livre d'or</h1>
+
+        
+
         <div class="rouage">
-            <img class="settings" src="./img/settings.png" alt="settings">
+            <button id="dm" class="dm">Mode sombre</button>
+            <div class="settings"></div>
             <span id="admin">Administion</span>
         </div>
 
@@ -69,7 +75,7 @@
             <span id="charCount" class="char-count">0 / 300 </span>
 
             <div class="condition">
-                <input type="checkbox" name="consition" id="condition">
+                <input type="checkbox" name="condition" id="condition">
                 <p>J'accepte le stockage de mes données personnelles.</p>
             </div>
 
