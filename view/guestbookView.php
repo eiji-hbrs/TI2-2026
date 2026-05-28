@@ -9,19 +9,18 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+    <script src="./js/jquery-3.7.1.min.js"></script>
 
     <title>TI2 | Livre d'or</title>
     <link rel="icon" type="image/png" href="img/favicon.png">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
+
 <body>
     <header>
         <div class="logo"></div>
         <h1 class="titre">TI2 | Livre d'or</h1>
-
-        
 
         <div class="rouage">
             <button id="dm" class="dm">Mode sombre</button>
@@ -39,36 +38,44 @@
         <h2>Votre message</h2>
         <form method="POST" action="">
 
-            <div class="form-group">
+            <div class="form-group" id="f-lastname">
                 <label for="lastname">Nom</label>
+                <span class="hint"></span>
+
                 <input type="text" name="lastname" id="lastname"
                     value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="f-firstname">
                 <label for="firstname">Prénom</label>
+                <span class="hint"></span>
+
                 <input type="text" name="firstname" id="firstname"
                     value="<?= htmlspecialchars($_POST['firstname'] ?? '') ?>" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="f-usermail">
                 <label for="usermail">E-mail</label>
+                <span class="hint"></span>
                 <input type="email" name="usermail" id="usermail"
                     value="<?= htmlspecialchars($_POST['usermail'] ?? '') ?>" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="f-postcode">
                 <label for="postcode">Code Postal</label>
+                <span class="hint"></span>
                 <input type="text" name="postcode" id="postcode"
                     value="<?= htmlspecialchars($_POST['postcode'] ?? '') ?>" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="f-phone">
                 <label for="phone">Téléphone</label>
+                <span class="hint"></span>
                 <input type="text" name="phone" id="phone" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>"
                     required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="f-message">
                 <label for="message">Message</label>
+                <span class="hint"></span>
                 <textarea name="message" id="message"
                     required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
             </div>
@@ -155,8 +162,8 @@
     // echo '<p>$_GET</p>';
     // var_dump($_GET);
     // ?>
+<script src="./js/validation.js"></script>
 
-    <script src="js/validation.js"></script>
 </body>
 
 </html>

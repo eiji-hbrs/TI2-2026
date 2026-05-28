@@ -149,7 +149,7 @@ $(document).ready(function () {
     postCode: /^[0-9]{4}$/,
     // regex pour numero gsm
     gsm: /^(?:\+324|00324|04)\d{8}$/,
-  }});
+  };
  
   // verification du firstname en temps réel
   $("#firstname").on("keyup", function () {
@@ -289,7 +289,8 @@ $(document).ready(function () {
     }
   });
 
-// Dark mode 
+});
+
 // Dark mode
 $("#dm").click(function(){
     $("body").toggleClass("dark");
