@@ -1,33 +1,44 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-.formulaire{
+}
+
+.formulaire {
+    /* display:flex; */
     border: 2px solid black;
     padding: 15px;
-    margin: 20px 0 20px 0;
+    margin: 0 auto;
     border-radius: 10px;
     justify-content: center;
     align-items: center;
-
-    display:grid;
     font-family: marcellus;
-    width: auto;
-
+    width: 90%;
+    margin-bottom: 10px;
+    grid-area: f;
 }
 
-#admin{
+#admin {
     display: none;
 }
 
-header{
+header {
     display: flex;
     justify-content: space-between;
     border: 2px solid black;
     border-radius: 10px;
-    margin: 15px 0 15px 0;
+    margin: 10px;
     padding: 15px;
+    grid-area: h;
+}
+
+.titre{
+    align-content: center;
 
 }
 
-.settings{
+.settings {
     border: 2px solid black;
     border-radius: 10px;
     align-items: center;
@@ -35,37 +46,42 @@ header{
     padding: 10px;
 }
 
-.logo{
+.logo {
     width: 100px;
     height: 100px;
-    margin: 0 ;  
+    margin: 10px;
+    align-content: center;
 }
 
-.settings{
+.settings {
     width: 50px;
-    height: 50px; 
+    height: 50px;
     padding-top: 10px;
     align-items: center;
-    
+
 }
 
-.submit-btn{
+.rouage{
+    align-content: center;
+}
+
+.submit-btn {
     border: 1px solid black;
-    border-radius: 10px;   
+    border-radius: 5px;
     padding: 1px;
-    width: 80%;
+    width: 95%;
     height: 30px;
-    margin-top: 10px;
-    margin-left: 10px;
- 
+    margin: 0 auto;
 }
 
-.livre{
+.livre {
     display: flex;
     justify-content: center;
+    margin: 10px;
+    grid-area: li;
 }
 
-.message-card{
+.message-card {
     border: 2px solid black;
     margin: 15px 0 15px 0;
     border-radius: 10px;
@@ -74,50 +90,116 @@ header{
 }
 
 
-label{
+label {
     grid-area: l;
     width: 80%;
-    height: 20px; 
-    margin: 5px 15px 15px 15px; 
- 
-}
-
-input{
-    grid-area: i;
-    width: 80%;
     height: 20px;
-    margin: 5px 10px 10px; 
+    margin: 5px 15px 15px 15px;
 
 }
 
-textarea{
+input {
+    grid-area: i;
+    width: 95%;
+    height: 20px;
+    margin: 5px 10px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+#message {
     grid-area: t;
-    width: 80%;
-    height: 20%; 
+    width: 95%;
+    height: 20%;
     margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+#charCount{
+        display: flex;
+        justify-content: end;
+}        
+
+.messages-section{
+    grid-area: ms;
+}
+
+.condition{
+    display: flex;
+    width: fit-content;
+    align-items: center;
+
+    input{
+        width: fit-content;
+    }
+}
+
+#condition{
 
 }
 
-@media (min-width: 960px){
-    body{
-        width: 90%;
-        justify-content: center;
-    }
-    .formulaire{
-        display: block;
-    }
-    .form-group{
+@media (min-width: 480px) and (max-width: 960px) {
+    body {
         display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
 
-    .submit-btn{
+    .formulaire {
+        display: block;
+        width: 95%;
+        margin-bottom: 10px;
+    }
+
+    .form-group {
+        display: flex;
+        label{
+            width: 20%;
+        }
+    }
+
+    .submit-btn {
         width: 90%;
         margin: 0 auto;
 
     }
-    textarea{
-        width: 90%;
+
+    #message {
+        width: 100%;
+    }
+
+    input {
+        grid-area: i;
+        width: 80%;
+        height: 30px;
+        margin: 5px 10px 10px;
+
+    }
+
+    #message{
+        width: 80%;
+        height: 100px;    
+        margin-right: 10px;    
+    }
+
+    #charCount{
+        display: flex;
+        justify-content: end;
     }
 }
 
+@media (min-width: 960px ) {
+    body{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas:
+            "h h"
+            "li ms"
+            "f ms"
+            "f ms"
+        ;
+        gap: 10px;
+    }
 
+
+}

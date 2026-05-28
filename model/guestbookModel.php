@@ -31,7 +31,6 @@ function addGuestbook(PDO $db,
 {
     // traitement des données backend (SECURITE)
     $usermail=filter_var($usermail,FILTER_VALIDATE_EMAIL);
-    $message=htmlspecialchars(trim(strip_tags($message)));
     $firstname = htmlspecialchars(trim(strip_tags($firstname)));
     $lastname = htmlspecialchars(trim(strip_tags($lastname)));
     $phone = htmlspecialchars(trim(strip_tags($phone)));

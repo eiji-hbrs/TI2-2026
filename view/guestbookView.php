@@ -26,55 +26,56 @@
     </header>
     <!-- Formulaire d'ajout d'un message -->
     <div class="livre">
-    <img class="book" src="./img/livre-ouvert.png" alt="livre">
+        <img class="book" src="./img/livre-ouvert.png" alt="livre">
     </div>
+
     <div class="formulaire">
         <h2>Votre message</h2>
-        
-            <form method="POST" action="">
+        <form method="POST" action="">
 
-                <div class="form-group">
-                    <label for="firstname">Prénom</label>
-                    <input type="text" name="firstname" id="firstname"
-                        value="<?= htmlspecialchars($_POST['firstname'] ?? '') ?>" required>
-                </div>
+            <div class="form-group">
+                <label for="lastname">Nom</label>
+                <input type="text" name="lastname" id="lastname"
+                    value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="firstname">Prénom</label>
+                <input type="text" name="firstname" id="firstname"
+                    value="<?= htmlspecialchars($_POST['firstname'] ?? '') ?>" required>
+            </div>
+            <div class="form-group">
+                <label for="usermail">E-mail</label>
+                <input type="email" name="usermail" id="usermail"
+                    value="<?= htmlspecialchars($_POST['usermail'] ?? '') ?>" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="lastname">Nom</label>
-                    <input type="text" name="lastname" id="lastname"
-                        value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" required>
-                </div>
+            <div class="form-group">
+                <label for="postcode">Code Postal</label>
+                <input type="text" name="postcode" id="postcode"
+                    value="<?= htmlspecialchars($_POST['postcode'] ?? '') ?>" required>
+            </div>
 
-                <div class="form-group">
-                    <label for="usermail">E-mail</label>
-                    <input type="email" name="usermail" id="usermail"
-                        value="<?= htmlspecialchars($_POST['usermail'] ?? '') ?>" required>
-                </div>
+            <div class="form-group">
+                <label for="phone">Téléphone</label>
+                <input type="text" name="phone" id="phone" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>"
+                    required>
+            </div>
 
-                <div class="form-group">
-                    <label for="postcode">Code Postal</label>
-                    <input type="text" name="postcode" id="postcode"
-                        value="<?= htmlspecialchars($_POST['postcode'] ?? '') ?>" required>
-                </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea name="message" id="message"
+                    required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
+            </div>
+            <span id="charCount" class="char-count">0 / 300 </span>
 
-                <div class="form-group">
-                    <label for="phone">Numero de Téléphone</label>
-                    <input type="text" name="phone" id="phone" value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>"
-                        required>
-                </div>
+            <div class="condition">
+                <input type="checkbox" name="consition" id="condition">
+                <p>J'accepte le stockage de mes données personnelles.</p>
+            </div>
 
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <div class="textarea-wrapper">
-                        <textarea name="message" id="message" rows="5"
-                            required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
-                        <span id="charCount" class="char-count">0 / 300 </span>
-                    </div>
-                </div>
-
-                <button type="submit" class="submit-btn" id="signupBtn">Envoyer le message</button>
-            </form>
-    </div>    
+            <button type="submit" class="submit-btn" id="signupBtn">Envoyer le message</button>
+        </form>
+    </div>
     <?php
     // on a tenté d'envoyé le formulaire et
     // il a passé les protections frontend
