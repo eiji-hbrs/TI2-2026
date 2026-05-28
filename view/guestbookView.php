@@ -147,6 +147,15 @@
                 </div>
                 <?php
             endforeach;
+            ?>
+            <div class="pagination">
+                <?php
+            if(!empty($paginationHtml)){
+                echo $paginationHtml; 
+            }
+            ?>
+            </div>
+            <?php
         endif;
         ?>
     </section>

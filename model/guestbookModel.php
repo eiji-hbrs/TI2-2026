@@ -115,6 +115,12 @@ function getNbTotalGuestbook(PDO $db): int
     // renvoyez le nombre total de messages
     // $stmt = $db->query("SELECT COUNT(*) AS nb FROM `commentaire`");
     // $nb = (int) $stmt->fetch()['nb'];
+    
+    $stmt = $db->query("SELECT COUNT(*) FROM `guestbook`");
+    $nb   = (int) $stmt->fetchColumn();
+    $stmt->closeCursor();
+    return $nb;
+
 
 }
 // SELECTION de messages dans le livre d'or par ordre de date croissante
@@ -129,7 +135,7 @@ function getNbTotalGuestbook(PDO $db): int
  * en utilisant une requête préparée (injection SQL), n'affiche que les messages
  * de la page courante
  */
-function getGuestbookPagination(PDO $db, int $pageActu=1, int $limit=5): array
+function getGuestbookPagination(PDO $db, int $pageActu=0, int $limit=5): array
 {
     // Requête préparée obligatoire !
     // Le $offset et le $limit sont des entiers, il faut donc les passer
@@ -137,7 +143,18 @@ function getGuestbookPagination(PDO $db, int $pageActu=1, int $limit=5): array
     // si la requête a réussi,
     // bonne pratique, fermez le curseur
     // renvoyer le tableau de(s) message(s) (vide si pas de résultats)
-    return [];
+
+    // préparation de la requête
+    $sql = "SELECT * FROM `guestbook` ORDER BY `datemessage` DESC LIMIT :offset, :limit;";
+    $stmt = $db->prepare($sql);
+    // on passe les variables à lar requêtes, ! ils doivent passer au format integer !
+    $stmt->bindValue("offset",$pageActu,PDO::PARAM_INT);
+    $stmt->bindValue("limit",$limit,PDO::PARAM_INT);
+    $stmt->execute();
+    $return = $stmt->fetchAll();
+    $stmt->closeCursor();
+    return $return;
+
 }
 
 # Pour afficher la pagination dans la vue

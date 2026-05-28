@@ -191,6 +191,13 @@ input {
   min-height: 14px;
 } 
 
+/* pagination */
+.pagination{
+    width: 100%;
+    text-align: center;
+    color: black;
+}
+
 /* responsive */
 @media (min-width: 480px) and (max-width: 960px) {
     body {
