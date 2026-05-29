@@ -139,7 +139,7 @@
 
    Bon travail !
    ========================================================================= */
-$(document).ready(function () {
+  $(document).ready(function () {
   const REGEX = {
     // regex pour nom et ^renom
     username: /^[a-zA-Z]{3,100}$/,
@@ -173,6 +173,7 @@ $(document).ready(function () {
       $hint.text("✗ 3-100 caractères, uniquement lettres");
     }
   });
+
   // verification du lastname en yemps réel
   $("#lastname").on("keyup", function () {
     // Ton code ici ↓
