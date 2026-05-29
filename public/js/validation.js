@@ -232,7 +232,7 @@ $(document).ready(function () {
     $field.removeClass("ok error");
  
     if (val === "") {
-      $hint.text("doit etre composé de 4 chiffre");
+      $hint.text("doit être composé de 4 chiffres");
       return;
     }
  
@@ -255,7 +255,7 @@ $(document).ready(function () {
     $field.removeClass("error");
  
     if (val === "") {
-      $hint.text("doit etre composé de 8 chiffre apres le 4");
+      $hint.text("doit être composé de 8 chiffre apres le 4");
       return;
     }
  
@@ -276,7 +276,7 @@ $(document).ready(function () {
     $(".char-count").text(val.length + " / 300 caractères");
  
     if (val === "") {
-      $hint.text("doit contenir min 10 caracter");
+      $hint.text("doit contenir min. 10 caractères");
       return;
     }
  
