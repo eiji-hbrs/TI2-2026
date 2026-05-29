@@ -204,7 +204,7 @@
   $("#usermail").on("keyup", function () {
     // Ton code ici ↓
     const val = $(this).val();
-    const $field = $("#f-email");
+    const $field = $("#f-usermail");
     const $hint = $field.find(".hint");
  
     $field.removeClass("ok error");

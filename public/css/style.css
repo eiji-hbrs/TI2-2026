@@ -98,12 +98,11 @@ header {
     padding: 5px;
 }
 
-
 label {
     grid-area: l;
     width: 80%;
     height: 20px;
-    margin: 5px 15px 15px 15px;
+    margin: 5px 15px 0px 15px;
 }
 
 input {
@@ -195,7 +194,6 @@ input {
   margin-top: 6px;
   font-family: monospace;
   font-size: 11px;
-  min-height: 14px;
 } 
 
 /* pagination */
@@ -206,7 +204,7 @@ input {
 }
 
 /* responsive */
-@media (min-width: 480px) and (max-width: 960px) {
+@media (min-width: 480px) AND (max-width: 960px) {
     body {
         display: flex;
         justify-content: center;
@@ -221,13 +219,14 @@ input {
 
     .form-group {
         display: flex;
+        flex-direction: column;
         label{
             width: 20%;
         }
     }
 
     .submit-btn {
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
 
     }
@@ -238,14 +237,13 @@ input {
 
     input {
         grid-area: i;
-        width: 80%;
+        width: 95%;
         height: 30px;
         margin: 5px 10px 10px;
-
     }
 
     #message{
-        width: 80%;
+        width: 95%;
         height: 100px;    
         margin-right: 10px;    
     }
@@ -255,8 +253,9 @@ input {
         justify-content: end;
 
 }
+}
 
-@media (min-width: 960px ) {
+@media (min-width: 960px) {
     body{
         display: grid;
         grid-template-columns: 1fr 2fr;
@@ -269,5 +268,4 @@ input {
         gap: 10px;
     }
 
-}
 }

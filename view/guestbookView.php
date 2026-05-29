@@ -41,7 +41,6 @@
             <div class="form-group" id="f-lastname">
                 <label for="lastname">Nom</label>
                 <span class="hint"></span>
-
                 <input type="text" name="lastname" id="lastname"
                     value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" required>
             </div>
@@ -109,7 +108,7 @@
                         function () {
                             window.location.href = "./";
                         }, 2000
-                    );
+                    );² 
                 </script>
             </div>
             <?php

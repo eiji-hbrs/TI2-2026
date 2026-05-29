@@ -8,9 +8,9 @@ SET time_zone = "+02:00";
 -- Création de la base de données `ti2web2026`
 --
 
-DROP DATABASE IF EXISTS `ti2web2026`;
-CREATE DATABASE IF NOT EXISTS `ti2web2026` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `ti2web2026`;
+-- DROP DATABASE IF EXISTS `2026_eiji`;
+CREATE DATABASE IF NOT EXISTS `2026_eiji` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `2026_eiji`;
 
 
 --
